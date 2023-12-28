@@ -226,7 +226,7 @@
         "kind": 2,
         "importPath": "app.routes",
         "description": "app.routes",
-        "peekOfCode": "def get_login_page():\n  login = LoginForm()\n  return render_template('login.html', form=login)\n@app.post('/login')\ndef post_login():\n  email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n  pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n  def get_user(email: str, pwd: str) -> Union[dict, None]:\n    for user in db.get_all_users():\n      if user['email'] == email and user['password'] == pwd:",
+        "peekOfCode": "def get_login_page():\n  login = LoginForm()\n  return render_template('login.html', form=login)\n@app.post('/login')\ndef post_login():\n    email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n    pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n    def get_user(email: str, pwd: str) -> Union[dict, None]:\n        for user in db.get_all_users():\n            if user['email'] == email and user['password'] == pwd:",
         "detail": "app.routes",
         "documentation": {}
     },
@@ -235,7 +235,7 @@
         "kind": 2,
         "importPath": "app.routes",
         "description": "app.routes",
-        "peekOfCode": "def post_login():\n  email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n  pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n  def get_user(email: str, pwd: str) -> Union[dict, None]:\n    for user in db.get_all_users():\n      if user['email'] == email and user['password'] == pwd:\n        return user\n    return None\n  user = get_user(email, pwd)\n  if user is None:",
+        "peekOfCode": "def post_login():\n    email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n    pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n    def get_user(email: str, pwd: str) -> Union[dict, None]:\n        for user in db.get_all_users():\n            if user['email'] == email and user['password'] == pwd:\n                return user\n        return None\n    user = get_user(email, pwd)\n    if user is None:",
         "detail": "app.routes",
         "documentation": {}
     },
@@ -289,7 +289,7 @@
         "kind": 5,
         "importPath": "app.routes",
         "description": "app.routes",
-        "peekOfCode": "app.config[\"JWT_SECRET_KEY\"] = \"super-secret-password\"  # Change this!\napp.config['SECRET_KEY'] = 'root'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',\n                         'aria-describedby': 'emailHelp'",
+        "peekOfCode": "app.config[\"JWT_SECRET_KEY\"] = \"super-secret-password\"  # Change this!\napp.config['SECRET_KEY'] = 'root'\napp.config['JWT_TOKEN_LOCATION'] = ['cookies']\napp.config['JWT_COOKIE_CSRF_PROTECT'] = False\napp.config['JWT_COOKIE_SECURE'] = True\napp.config['JWT_COOKIE_SAMESITE'] = 'None'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],",
         "detail": "app.routes",
         "documentation": {}
     },
@@ -298,7 +298,43 @@
         "kind": 5,
         "importPath": "app.routes",
         "description": "app.routes",
-        "peekOfCode": "app.config['SECRET_KEY'] = 'root'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',\n                         'aria-describedby': 'emailHelp'\n                     })",
+        "peekOfCode": "app.config['SECRET_KEY'] = 'root'\napp.config['JWT_TOKEN_LOCATION'] = ['cookies']\napp.config['JWT_COOKIE_CSRF_PROTECT'] = False\napp.config['JWT_COOKIE_SECURE'] = True\napp.config['JWT_COOKIE_SAMESITE'] = 'None'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['JWT_TOKEN_LOCATION']",
+        "kind": 5,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "app.config['JWT_TOKEN_LOCATION'] = ['cookies']\napp.config['JWT_COOKIE_CSRF_PROTECT'] = False\napp.config['JWT_COOKIE_SECURE'] = True\napp.config['JWT_COOKIE_SAMESITE'] = 'None'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['JWT_COOKIE_CSRF_PROTECT']",
+        "kind": 5,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "app.config['JWT_COOKIE_CSRF_PROTECT'] = False\napp.config['JWT_COOKIE_SECURE'] = True\napp.config['JWT_COOKIE_SAMESITE'] = 'None'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['JWT_COOKIE_SECURE']",
+        "kind": 5,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "app.config['JWT_COOKIE_SECURE'] = True\napp.config['JWT_COOKIE_SAMESITE'] = 'None'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',\n                         'aria-describedby': 'emailHelp'",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['JWT_COOKIE_SAMESITE']",
+        "kind": 5,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "app.config['JWT_COOKIE_SAMESITE'] = 'None'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',\n                         'aria-describedby': 'emailHelp'\n                     })",
         "detail": "app.routes",
         "documentation": {}
     },
