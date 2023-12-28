@@ -226,7 +226,7 @@
         "kind": 2,
         "importPath": "app.routes",
         "description": "app.routes",
-        "peekOfCode": "def get_login_page():\n  login = LoginForm()\n  return render_template('login.html', form=login)\n@app.post('/login')\ndef post_login():\n  email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n  pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n  def get_user(email: str, pwd: str) -> Union[dict, None]:\n    for user in db.get_all_users():\n      if user['email'] == email and user['password'] == pwd:",
+        "peekOfCode": "def get_login_page():\n  login = LoginForm()\n  return render_template('login.html', form=login)\n@app.post('/login')\ndef post_login():\n    email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n    pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n    def get_user(email: str, pwd: str) -> Union[dict, None]:\n        for user in db.get_all_users():\n            if user['email'] == email and user['password'] == pwd:",
         "detail": "app.routes",
         "documentation": {}
     },
@@ -235,7 +235,7 @@
         "kind": 2,
         "importPath": "app.routes",
         "description": "app.routes",
-        "peekOfCode": "def post_login():\n  email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n  pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n  def get_user(email: str, pwd: str) -> Union[dict, None]:\n    for user in db.get_all_users():\n      if user['email'] == email and user['password'] == pwd:\n        return user\n    return None\n  user = get_user(email, pwd)\n  if user is None:",
+        "peekOfCode": "def post_login():\n    email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n    pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n    def get_user(email: str, pwd: str) -> Union[dict, None]:\n        for user in db.get_all_users():\n            if user['email'] == email and user['password'] == pwd:\n                return user\n        return None\n    user = get_user(email, pwd)\n    if user is None:",
         "detail": "app.routes",
         "documentation": {}
     },

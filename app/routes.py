@@ -87,23 +87,27 @@ def get_login_page():
 
 @app.post('/login')
 def post_login():
-  email = sha256(request.form['email'].encode('utf-8')).hexdigest()
-  pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()
+    email = sha256(request.form['email'].encode('utf-8')).hexdigest()
+    pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()
 
-  def get_user(email: str, pwd: str) -> Union[dict, None]:
-    for user in db.get_all_users():
-      if user['email'] == email and user['password'] == pwd:
-        return user
-    return None
+    def get_user(email: str, pwd: str) -> Union[dict, None]:
+        for user in db.get_all_users():
+            if user['email'] == email and user['password'] == pwd:
+                return user
+        return None
 
-  user = get_user(email, pwd)
-  if user is None:
-    return jsonify({"msg": "Incorrect email or password"}), 401
+    user = get_user(email, pwd)
+    if user is None:
+        return jsonify({"msg": "Incorrect email or password"}), 401
 
-  additional_claims = {"role": user['role'], "id": user['id']}
-  access_token = create_access_token(user['name'],
-                                     additional_claims=additional_claims)
-  return jsonify(access_token=access_token, role=user['role'])
+    additional_claims = {"role": user['role'], "id": user['id']}
+    access_token = create_access_token(user['name'],
+                                        additional_claims=additional_claims)
+    
+    # Setting the access token in the cookies
+    response = jsonify(access_token=access_token, role=user['role'])
+    response.set_cookie('token', value=access_token, httponly=True, samesite='None', secure=True)
+    return response
 
 
 @app.get('/logout')
