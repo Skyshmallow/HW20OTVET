@@ -1,0 +1,48 @@
+{% extends "_base.html" %}
+{% block header_btn %}
+<div id="header_btn">
+    {% if not has_token %}
+        <a href="/login" class="btn btn-success">Log in</a>
+        <a href="/signup" class="btn btn-primary">Sign Up</a>
+    {% else %}
+        <button id="logout" class="btn btn-danger">Log Out</button>
+    {% endif %}
+</div>
+{% endblock %}
+{% block content %}
+    <!-- <section class="d-flex flex-column align-items-center">
+        <h1 class="mb-5 title">User list</h1>
+        <div class="userList ">
+            {% for n in names %}
+            <div class="name">
+                <h5 class="fw-bold m-0">{{n.title()}}</h5>
+            </div>
+            {% endfor %}
+        </div>
+    </section> -->
+    <section class="text-center">
+        <h1 class="mb-5 title">Users List</h1>
+        <div class="list-group">
+            {% for name in names %}
+                <div class="list-group-item">
+                    <h5 class="fw-bold m-0">{{ name.title() }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    <script>
+        $(document).ready(function() {
+            $('#logout').click(function(){
+                const cookies = document.cookie.split(";");
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i];
+                    const eqPos = cookie.indexOf("=");
+                    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                }
+                $("#header_btn").html('<a href="/login" class="btn btn-primary" style="margin-right: 5px">Log in</a><a href="/signup" class="btn btn-success">Sign Up</a>')
+            })
+        });
+    </script>
+{% endblock %}

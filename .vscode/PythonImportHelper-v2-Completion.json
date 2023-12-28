@@ -1,0 +1,314 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "sha256",
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "isExtraImport": true,
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
+        "label": "uuid4",
+        "importPath": "uuid",
+        "description": "uuid",
+        "isExtraImport": true,
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "JWTManager",
+        "importPath": "flask_jwt_extended",
+        "description": "flask_jwt_extended",
+        "isExtraImport": true,
+        "detail": "flask_jwt_extended",
+        "documentation": {}
+    },
+    {
+        "label": "create_access_token",
+        "importPath": "flask_jwt_extended",
+        "description": "flask_jwt_extended",
+        "isExtraImport": true,
+        "detail": "flask_jwt_extended",
+        "documentation": {}
+    },
+    {
+        "label": "FlaskForm",
+        "importPath": "flask_wtf",
+        "description": "flask_wtf",
+        "isExtraImport": true,
+        "detail": "flask_wtf",
+        "documentation": {}
+    },
+    {
+        "label": "decode",
+        "importPath": "jwt",
+        "description": "jwt",
+        "isExtraImport": true,
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "EmailField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "StringField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "SubmitField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "DataRequired",
+        "importPath": "wtforms.validators",
+        "description": "wtforms.validators",
+        "isExtraImport": true,
+        "detail": "wtforms.validators",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "importPath": "app.models",
+        "description": "app.models",
+        "isExtraImport": true,
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "DataController",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class DataController:\n    def __init__(self) -> None:\n        with open('app/data.json') as f:\n            self._users = json.load(f)['users']\n    def get_user_by_id(self, user_id: str) -> Union[dict, None]:\n        for user in self._users:\n            if user['id'] == user_id:\n                return user\n        return None\n    def get_all_users(self) -> list:",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "db = DataController()",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "LoginForm",
+        "kind": 6,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "class LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',\n                         'aria-describedby': 'emailHelp'\n                     })\n  pwd = PasswordField('Password',\n                      validators=[DataRequired()],",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "SignUpForm",
+        "kind": 6,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "class SignUpForm(FlaskForm):\n  name = StringField('Name',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'name',\n                         \"placeholder\": \"Name\",\n                         'aria-describedby': 'nameHelp'\n                     })\n  email = EmailField('Email',",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def index():\n  token = request.cookies.get('token', None)\n  print(token)\n  has_token = False\n  if token is not None:\n    has_token = True\n  return render_template('home.html',\n                         names=db.get_all_users_names(),\n                         has_token=has_token)\n@app.get('/login')",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "get_login_page",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def get_login_page():\n  login = LoginForm()\n  return render_template('login.html', form=login)\n@app.post('/login')\ndef post_login():\n  email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n  pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n  def get_user(email: str, pwd: str) -> Union[dict, None]:\n    for user in db.get_all_users():\n      if user['email'] == email and user['password'] == pwd:",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "post_login",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def post_login():\n  email = sha256(request.form['email'].encode('utf-8')).hexdigest()\n  pwd = sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n  def get_user(email: str, pwd: str) -> Union[dict, None]:\n    for user in db.get_all_users():\n      if user['email'] == email and user['password'] == pwd:\n        return user\n    return None\n  user = get_user(email, pwd)\n  if user is None:",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def logout():\n  return redirect(url_for('home'))\n@app.get('/signup')\ndef get_signup_page():\n  signup = SignUpForm()\n  return render_template('sign_up.html', form=signup)\n@app.post('/signup')\ndef create_new_user():\n  print(request.form)\n  data = {",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "get_signup_page",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def get_signup_page():\n  signup = SignUpForm()\n  return render_template('sign_up.html', form=signup)\n@app.post('/signup')\ndef create_new_user():\n  print(request.form)\n  data = {\n      'id': str(uuid4()),\n      'name': str(request.form['name']),\n      'role': 'user',",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "create_new_user",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def create_new_user():\n  print(request.form)\n  data = {\n      'id': str(uuid4()),\n      'name': str(request.form['name']),\n      'role': 'user',\n      'email': sha256(request.form['email'].encode('utf-8')).hexdigest(),\n      'password': sha256(request.form['pwd'].encode('utf-8')).hexdigest()\n  }\n  db.add_user(data)",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def admin():\n  token = request.cookies.get('token', None)\n  if token is None:\n    return render_template('access.html')\n  decoded_token = d(jwt=token,\n                    key=\"super-secret-password\",\n                    algorithms=[\"HS256\"])\n  if decoded_token['role'] != 'admin':\n    return render_template('access.html')\n  return render_template('admin.html')",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "user",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def user():\n  token = request.cookies.get('token', None)\n  if token is None:\n    return render_template('access.html')\n  decoded_token = d(jwt=token,\n                    key=\"super-secret-password\",\n                    algorithms=[\"HS256\"])\n  if decoded_token['role'] != 'user':\n    return render_template('access.html')\n  return render_template('user.html', user=decoded_token['sub'])",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"JWT_SECRET_KEY\"]",
+        "kind": 5,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "app.config[\"JWT_SECRET_KEY\"] = \"super-secret-password\"  # Change this!\napp.config['SECRET_KEY'] = 'root'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',\n                         'aria-describedby': 'emailHelp'",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SECRET_KEY']",
+        "kind": 5,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "app.config['SECRET_KEY'] = 'root'\nj_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',\n                         'aria-describedby': 'emailHelp'\n                     })",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "j_w_t",
+        "kind": 5,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "j_w_t = JWTManager(app)\nclass LoginForm(FlaskForm):\n  email = EmailField('Email',\n                     validators=[DataRequired()],\n                     render_kw={\n                         'class': 'form-control',\n                         'id': 'email',\n                         'aria-describedby': 'emailHelp'\n                     })\n  pwd = PasswordField('Password',",
+        "detail": "app.routes",
+        "documentation": {}
+    }
+]

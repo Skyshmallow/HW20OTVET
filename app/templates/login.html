@@ -1,0 +1,88 @@
+{% extends "_base.html" %}
+{% block header_btn %}
+    <a href="/home" class="btn btn-primary">Back</a>
+{% endblock %}
+{% block content %}
+    <section class="d-flex justify-content-center align-items-center mt-5">
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body fw-bold">
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+            </div>
+        </div>
+        <form method="post" class="loginForm d-flex flex-column align-items-center">
+            <h2 class="text-center mb-5">Log In</h2>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <!-- <input type="email" class="form-control" id="email" aria-describedby="emailHelp"> -->
+              {{ form.email }}
+            </div>
+            <div class="mb-5">
+              <label for="pwd" class="form-label">Password</label>
+              <!-- <input type="password" class="form-control" id="pwd"> -->
+              {{ form.pwd }}
+            </div>
+            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+            {{ form.submit }}
+          </form>
+    </section>
+    <script>
+        $(document).ready(function() {
+            $("#submit").click(function(e) {
+                e.preventDefault();
+                if ($("#email").val().trim().length == 0) {
+                    $("#email").addClass('is-invalid')
+                }
+
+                if ($("#pwd").val().length == 0) {
+                    $("#pwd").addClass("is-invalid")
+                }
+
+                $("#email").keyup(function () {
+                    $("#email").removeClass('is-invalid');
+                });
+
+                $("#pwd").keyup(function () {
+                    $("#pwd").removeClass('is-invalid');
+                });
+
+                if ( !($("#pwd").hasClass("is-invalid") || $("#email").hasClass("is-invalid"))){
+                    let loginForm = new FormData(document.querySelector('.loginForm'));
+                    $.ajax({
+                        url: '/login',
+                        method: 'post',
+                        data: loginForm,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            $('.toast').removeClass('text-bg-danger')
+                            $('.toast').addClass('text-bg-success');
+                            $('.toast-body').text('Login successfully completed!');
+                            $('.toast').toast('show');
+
+                            $("#email").val("");
+                            $("#pwd").val("");
+                            document.cookie = 'token=' + response.access_token;
+                            console.log(response, document.cookie)
+                            
+                            setTimeout(function(){
+                                window.location.href = '/' + response.role;
+                            }, 2 * 1000);
+                        },
+                        error: function(response) {
+                            $('.toast').removeClass('text-bg-success')
+                            $('.toast').addClass('text-bg-danger');
+                            $('.toast-body').text("Invalid email or password. Please try again!");
+                            $('.toast').toast('show');
+                            console.error(error);
+                        }
+                    
+                    })
+                }
+            });
+        });
+    </script>
+{% endblock %}

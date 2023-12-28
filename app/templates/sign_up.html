@@ -1,0 +1,141 @@
+{% extends '_base.html' %}
+{% block header_btn %}
+    <a href="/home" class="btn btn-primary">Back</a>
+{% endblock %}
+{% block content %}
+<section class="d-flex justify-content-center mt-5">
+    <div class="position-fixed top-10 end-0 p-3" style="z-index: 11">
+        <div class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body fw-bold">
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        </div>
+    </div>
+    <form method="post" class="d-flex signUpForm align-items-center flex-column">
+        <h2 class="text-center mb-5">Registration</h2>
+        <div class="mb-3">
+            {{ form.name }}
+            <div id="nameHelp" class="form-text text-danger"></div>
+        </div>
+        <div class="mb-5">
+            <!-- <input type="email" class="form-control" id="email" aria-describedby="emailHelp"> -->
+            {{ form.email }}
+            <div id="emailHelp" class="form-text text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Password</label>
+            <!-- <input type="password" class="form-control" id="pwd"> -->
+            {{ form.pwd }}
+        </div>
+        <div class="mb-5">
+            <p id="pwdLength" class="text-danger my-0 fw-bold small">* Min length -> 8 characters</p>
+            <p id="pwdLetter" class="text-danger my-0 fw-bold small">* At least -> 1 letter</p>
+            <p id="pwdDigit" class="text-danger my-0 fw-bold small">* At least ->1 digit</p>
+        </div>
+        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+        {{ form.submit }}
+  </form>
+  <script>
+    $(document).ready(function() {
+        let pwd = $('#pwd');
+        let regExp1 = /[a-zA-Z]/;
+        let regExp2 = /[0-9]/;
+
+        pwd.on('keyup', function() {
+            /* 1 */
+            if (pwd.val().length >= 8) {
+                $('#pwdLength').removeClass('text-danger');
+                $('#pwdLength').addClass('text-success');
+            } else if ($('#pwdLength').hasClass('text-success')) {
+                $('#pwdLength').removeClass('text-success');
+                $('#pwdLength').addClass('text-danger');
+            }
+            /* 2 */
+            if (regExp1.test(pwd.val())) {
+                $('#pwdLetter').removeClass('text-danger');
+                $('#pwdLetter').addClass('text-success');
+            } else {
+                $('#pwdLetter').removeClass('text-success');
+                $('#pwdLetter').addClass('text-danger');
+            }
+            /* 3 */
+            if (regExp2.test(pwd.val())) {
+                $('#pwdDigit').removeClass('text-danger');
+                $('#pwdDigit').addClass('text-success');
+            } else {
+                $('#pwdDigit').removeClass('text-success');
+                $('#pwdDigit').addClass('text-danger');
+            }
+        });
+        $('#submit')
+        $('#submit').click(function(e) {
+            e.preventDefault();
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if ($('#name').val().trim().length == 0) {
+                $('#name').addClass('is-invalid');
+                $('#nameHelp').text('Please enter your name!');
+            }
+            $('#name').click(function() {
+                $('#name').removeClass('is-invalid');
+                $('#nameHelp').text('');
+            })
+
+            if ($('#email').val().trim().length == 0) {
+                $('#email').addClass('is-invalid');
+                $('#emailHelp').text('Please enter your email!');
+            } else if (!re.test($('#email').val().trim())) {
+                $('#email').addClass('is-invalid');
+                $('#emailHelp').text('Please enter your email correctly!');
+            }
+
+            $('#email').click(function() {
+                $('#email').removeClass('is-invalid');
+                $('#emailHelp').text('');
+            })
+
+            if (($('#pwd').val().length < 8) || !(regExp1.test(pwd.val())) || !(regExp2.test(pwd.val()))) {
+                $('#pwd').addClass('is-invalid');
+            }
+            $('#pwd').click(function() {
+                $('#pwd').removeClass('is-invalid');
+            })
+            
+            if (!($('#pwd').hasClass('is-invalid') || $('#email').hasClass('is-invalid') || $('#name').hasClass('is-invalid'))) {
+                let signUpForm = new FormData(document.querySelector('.signUpForm'))
+                $.ajax({
+                    url: '/signup',
+                    method: 'post',
+                    data: signUpForm,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // Обработка успешного ответа
+                        $('.toast').removeClass('text-bg-danger')
+                        $('.toast').addClass('text-bg-success');
+                        $('.toast-body').text('Data sent successfully!');
+                        $('.toast').toast('show');
+
+                        $("#name").val("");
+                        $("#email").val("");
+                        $("#pwd").val("");
+                        console.log('Результат:', response);
+                    },
+                    error: function(error) {
+                        // Обработка ошибки
+                        $('.toast').removeClass('text-bg-success')
+                        $('.toast').addClass('text-bg-danger');
+                        $('.toast-body').text('ERROR!');
+                        $('.toast').toast('show');
+                        console.error(error);
+                    }
+                });
+            }
+        });
+    });
+    
+  </script>
+</section>
+{% endblock %}

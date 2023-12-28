@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "2a03a2e5-2e91-437e-ba6f-3554d3845a7a",
+      "name": "Suxarick",
+      "role": "user",
+      "email": "b487b6de56beccfc60e9aa48bde1197ca351397d3851f5806d411d11b3215b44",
+      "password": "a36281b6e9edd12ca829a149809dab7d5d19f736bc88b5cca3b9a4a5d671cafd"
+    },
+    {
+      "id": "6d494e3d-8bb0-474c-9952-d0dac801908a",
+      "name": "Babay",
+      "role": "user",
+      "email": "c0e46f416408349ad19be6aed558a3f8cb75ad4159ed50530bfe6f17ad4d5fa3",
+      "password": "434b7c26d5a21bc40c98115453c6ff89741199ec9e18b31e6bef68265f9c84cf"
+    },
+    {
+      "id": "dc4b7376-8cc5-4662-99cf-d3a87db1c8a2",
+      "name": "admin",
+      "role": "admin",
+      "email": "7932b2e116b076a54f452848eaabd5857f61bd957fe8a218faf216f24c9885bb",
+      "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"
+    }
+  ]
+}
