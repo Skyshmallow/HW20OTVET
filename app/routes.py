@@ -15,6 +15,10 @@ from app.models import db
 
 app.config["JWT_SECRET_KEY"] = "super-secret-password"  # Change this!
 app.config['SECRET_KEY'] = 'root'
+app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_COOKIE_CSRF_PROTECT'] = False
+app.config['JWT_COOKIE_SECURE'] = True
+app.config['JWT_COOKIE_SAMESITE'] = 'None'
 j_w_t = JWTManager(app)
 
 

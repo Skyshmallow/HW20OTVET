@@ -8,13 +8,6 @@
       "password": "a36281b6e9edd12ca829a149809dab7d5d19f736bc88b5cca3b9a4a5d671cafd"
     },
     {
-      "id": "6d494e3d-8bb0-474c-9952-d0dac801908a",
-      "name": "Babay",
-      "role": "user",
-      "email": "c0e46f416408349ad19be6aed558a3f8cb75ad4159ed50530bfe6f17ad4d5fa3",
-      "password": "434b7c26d5a21bc40c98115453c6ff89741199ec9e18b31e6bef68265f9c84cf"
-    },
-    {
       "id": "dc4b7376-8cc5-4662-99cf-d3a87db1c8a2",
       "name": "admin",
       "role": "admin",
